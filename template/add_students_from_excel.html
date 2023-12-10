@@ -1,0 +1,11 @@
+<!-- yourapp/templates/yourapp/add_students_from_excel.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Add Students from Excel</h2>
+  <form method="post" enctype="multipart/form-data" action="{% url 'add_students_from_excel' class_id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload Excel File</button>
+  </form>

@@ -1,0 +1,75 @@
+{% extends 'admin_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Current Classes</title>
+</head>
+<body>
+    <h2>Current Classes</h2>
+
+    
+        <div class="container" style="display: flex;">
+            {% for class_instance in current_classes %}
+            <div class="row">
+                <div class="col-4">
+                    <a href="{% url 'classes:students' class_instance.id %}" style="text-decoration: none;">
+
+                    <div class="container" style=" display: block; margin-left: 200px; padding-left: 40px; padding-top: 30px; margin-top: 50px; height: 200px; width: 300px;background-color:rgb(155, 163, 249) ;border-radius: 20px;  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+                       <h2 style="font-size: 30px; color: aliceblue;">{{ class_instance.classname }} </h2> 
+                        <h2e style="font-size: 15px; color: aliceblue;" > Semester: {{ class_instance.semester }}</h2> 
+                    </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <form method="POST" action="{% url 'classes:archive_class' class_instance.id %}"onsubmit="return confirmDelete()">
+                            {% csrf_token %}
+                            <button type="submit" style="margin-left: 200px; border-radius: 20px;  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+                                <div class="container" style="height: 40px;width: 290px; background-color: azure; padding: 0%; margin-top: 0px; border-radius: 20px; ">
+                                 ARCHIVE THIS CLASS
+                            </div></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function confirmDelete() {
+                    return confirm("Are you sure you want to archive this class?");
+                }
+            </script>
+            
+            {% endfor %}
+
+        </div>
+
+
+ <div class="container" style="display: flex; "style="text-decoration: none;">
+    <a href="{% url 'Gradewise:user_home' %}" style="text-decoration: none;">
+        <div class="container-fluid" id="cc1" style="margin-left: 100px; padding-left: 40px;padding-top: 15PX;">
+          <h2 class="cctext" style="font-size: 15px;">
+            BACK
+          </h2>
+    </div></a>
+
+    <a href="{% url 'classes:next_class'%}"style="text-decoration: none;">
+        <div class="container-fluid" id="cc2" style="margin-left: 250px; padding-left: 8px; padding-top: 15PX;">
+            <h2 class="cctext" style="font-size: 15px;">
+              create new class
+            </h2>
+      </div>
+    </a>
+    <a href="{% url 'classes:view_Archived_class'%} "style="text-decoration: none;">
+        <div class="container-fluid" id="cc3" style="margin-left: 250px; padding-left: 8px; padding-top: 15PX;" >
+        <h2 class="cctext" style="font-size: 15px;">
+          view previous class
+        </h2>
+  </div></a>
+        </div>
+</body>
+</html>
+{% endblock content %}

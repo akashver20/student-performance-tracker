@@ -1,0 +1,63 @@
+{% extends 'teacher_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeWise</title>
+</head>
+
+
+{% block content %}
+<body>
+    <h2>Students of Class: {{ class_instance.classname }} - Semester {{ class_instance.semester }}</h2>
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-9">
+                <table width="100%">
+        
+        
+                    {% for student_name in student_names %}
+                    <tr style="height: 10px;">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color: rgb(225, 235, 245); box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 40px;">
+                       
+                       <th style="padding-left: 20px;">
+                            {{ student_name }}
+                       </th> 
+                       <Td>
+                        <a href="{% url 'teacher:teacher_view_student_details' class_instance.id student_name %}" style="text-decoration: none;">
+                            <button>View Details</button>
+                        </a>
+                       </Td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'teacher:teacher_report_generation' class_instance.id%}" style="text-decoration: none;">
+                    <div class="container-fluid" id="ac1" style="margin-left: 100px; padding-left: 20px;padding-top: 7px;">
+                        <h2 class="cctext" style="font-size: 15px;">
+                          generate class report
+                        </h2>
+                  </div></a>
+            <br>
+
+                <a href="{% url 'teacher:teacher_home' %}"style="text-decoration: none;">
+                    <div class="container-fluid" id="ac1" style="margin-left: 100px; padding-left: 40px;">
+                        <h2 class="cctext" style="font-size: 15px;">
+                          Back
+                        </h2>
+                  </div>
+                </a>
+            </div>
+        </div>
+    </div>
+   
+   
+</body>
+{% endblock content %}

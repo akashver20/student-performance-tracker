@@ -1,0 +1,86 @@
+{% extends 'admin_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Data</title>
+</head>
+<body>
+    
+    
+        <h2 style="margin-left: 600px; color: rgb(19, 19, 19);">Add class</h2>
+        <form method="POST" action="{% url 'classes:next_class' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container" style="margin-left: 500px; margin-top: 20px;">
+                <div class="row m-2" >
+                    <div class="col-2">
+                        {{ form.classname.label_tag }}                    </div>
+                    <div class="col-2">
+                        {{ form.classname }}
+                    
+                    </div>
+                    <div class="col-6">
+                        <h1 style="color: rgb(252, 67, 11); font-size: 17px;">*(class name + year e.g. fymca2023 , symca2023)</h1>
+
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-2">
+                        {{ form.semester.label_tag }}                    </div>
+                    <div class="col-4">
+                        {{ form.semester }}
+    
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-2">
+                        {{ form.session.label_tag }}                    </div>
+                    <div class="col-4">
+                        {{ form.session }}
+    
+                    </div>
+                </div>
+                <div class="row m-2">
+                    <div class="col-2">
+                        {{ form.excel_file.label_tag }}                    </div>
+                    <div class="col-4">
+                        {{ form.excel_file }}
+                           
+                    </div>
+    
+                </div>
+                <div class="row m-2">
+                    <div class="col-2">
+                        <a href="{% url 'classes:current_classes' %}" style="text-decoration: none;">
+                            <div class="container-fluid" id="ttab3" style="padding-left: 40px; padding-top: 15px;">
+                            <!-- <img src='{% static "add_teacher.png" %}'  style="height: 20px; width: 20px; "> -->
+                            <h2 class="cctext" style="font-size: 15px;">
+                              BACK
+                            </h2>
+                            </div></a>
+                    </div>
+
+                <div class="col-4">
+                    <button type="submit" style="border: 0; background-color: rgb(252, 253, 254);">
+                        <div class="container-fluid" id="ttab4" style="padding-top: 15px;">
+                        <h2 class="cctext" style="font-size: 15px;">
+                          ADD class
+                        </h2>
+                        </div></button>
+
+                </div>
+   
+            
+        </form>
+    
+    
+</body>
+</html>
+{% endblock content %}

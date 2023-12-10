@@ -1,0 +1,96 @@
+{% extends 'admin_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style="margin-left: 600px; color: rgb(19, 19, 19);">ADD TEACHER</h2>
+    <form method="POST" action="{% url 'teacher:add_teacher' %}">
+        {% csrf_token %}
+        <div class="container" style="margin-left: 500px; margin-top: 20px;">
+            <div class="row m-2" >
+                <div class="col-2">
+                    first name
+                </div>
+                <div class="col-4">
+                    {{ teacherForm.first_name }}
+
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    last name
+                </div>
+                <div class="col-4">
+                    {{ teacherForm.last_name }}
+
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    username
+                </div>
+                <div class="col-4">
+                    {{ teacherForm.username }}
+
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    email
+                </div>
+                <div class="col-4">
+                    {{ teacherForm.email }}
+
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    password
+                </div>
+                <div class="col-4">
+                    {{ teacherForm.password }}
+
+                </div>
+
+            </div>
+            <div class="row m-2">
+                <div class="col-2">
+                    <a href="{% url 'Gradewise:teachers' %}" style="text-decoration: none;">
+                        <div class="container-fluid" id="ttab3" style="padding-left: 40px; padding-top: 15px;">
+                        <!-- <img src='{% static "add_teacher.png" %}'  style="height: 20px; width: 20px; "> -->
+                        <h2 class="cctext" style="font-size: 15px;">
+                          BACK
+                        </h2>
+                        </div></a>
+                </div>
+                <div class="col-4">
+                    <button type="submit" style="border: 0; background-color: rgb(252, 253, 254);">
+                        <div class="container-fluid" id="ttab4" style="padding-top: 15px;">
+                        <h2 class="cctext" style="font-size: 15px;">
+                          ADD TEACHER
+                        </h2>
+                        </div></button>
+
+                </div>
+
+            </div>
+        </div>
+
+        
+             
+
+        
+    </form> 
+    
+</body>
+</html>
+{% endblock content %}

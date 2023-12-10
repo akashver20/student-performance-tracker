@@ -1,0 +1,147 @@
+{% extends 'teacher_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Generation</title>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9" >
+                <h1 style="padding-left: 400px;">CLASS REPORT</h1>
+
+    {% if student_details %}
+        <table width="100%">
+            <tr style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 50px;">
+                <th>Student Name</th>
+                <th>Actual ETE</th>
+                <th>Predicted ETE</th>
+            </tr>
+            {% for student in student_details %}
+            <tr style="height: 10px;">
+                <td></td>
+                {% if student.1 %}
+                <td></td>
+                {% endif %}
+
+                <td></td>
+            </tr>
+            {% if student.2 > 90 %}
+            <tr style="background-color: rgb(19, 86, 5); box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 40px;">
+                <td>{{ student.0 }}</td>
+                {% if student.2 %}
+
+                <td>{{ student.1 }}</td>
+                {% endif %}
+
+                <td>{{ student.2 }}</td>
+            </tr>            
+            {% elif student.2 > 60 %}
+            <tr style="background-color: rgb(176, 242, 167); box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 40px;">
+                <td>{{ student.0 }}</td>
+                {% if student.2 %}
+
+                <td>{{ student.1 }}</td>
+                {% endif %}
+
+                <td>{{ student.2 }}</td>
+
+            </tr>            
+            {% elif student.2 > 35 %}
+            <tr style="background-color: rgb(242, 237, 89); box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 40px;">
+                <td>{{ student.0 }}</td>
+                {% if student.2 %}
+
+                <td>{{ student.1 }}</td>
+                {% endif %}
+
+                <td>{{ student.2 }}</td>
+
+            </tr>            {% else %}
+            <tr style="background-color: rgb(171, 55, 23); box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); height: 40px;">
+                <td>{{ student.0 }}</td>
+                {% if student.2 %}
+
+                <td>{{ student.1 }}</td>
+                {% endif %}
+
+                <td>{{ student.2 }}</td>
+
+            </tr>            {% endif %}
+                <!-- <tr>
+                    <td>{{ student.0 }}</td>
+                    <td>{{ student.1 }}</td>
+                </tr> -->
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No student details available.</p>
+    {% endif %}
+            </div>
+            <div class="col-3" style="padding-left: 20px; ">
+                <div class="container" style="padding-top: 10px;">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="{% static "hand.jpeg" %}"  style="height: 40px; width: 40px;">
+
+                        </div>
+                        <div class="col">
+                            <a href="#graph">
+                                <button style="background-color: blueviolet; height: 40px; border-radius: 20px;">
+                                    get actual vs predicted score graph
+                                </button>
+                            </a>
+
+                        </div>
+                        
+                    </div>
+                    <div class="row" style="height: 20px;"></div>
+                    <div class="row">
+                        <div class="col-4" style="background-color:rgb(19, 86, 5);">
+
+                        </div>
+                        <div class="col">Excellent(>90)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" style="background-color: rgb(176, 242, 167);">
+
+                        </div>
+                        <div class="col">good(90>score>60)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" style="background-color:rgb(242, 237, 89);">
+
+                        </div>
+                        <div class="col">average(60>score>35)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" style="background-color:rgb(171, 55, 23);">
+
+                        </div>
+                        <div class="col"> bad condition(<35) </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    {% if image3_base64 %}
+    <h2 style="background-color: rgb(247, 247, 216);" id="graph"> COMPARISION b/w ACTUAL VS PREDICTED ETE</h2>
+    
+        <div style="padding-left: 1PX; margin-left: 0px;">
+            <img src="data:image/png;base64, {{ image3_base64 }}" alt="Line Graph">
+        </div>
+    
+    {% endif %}
+    
+</body>
+</html>
+{% endblock content %}

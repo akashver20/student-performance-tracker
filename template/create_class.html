@@ -1,0 +1,12 @@
+<!-- yourapp/templates/yourapp/create_class.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create Class</h2>
+  <form method="post" action="{% url 'Gradewise:create_class' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Class</button>
+  </form>
+{% endblock %}

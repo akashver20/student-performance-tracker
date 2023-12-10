@@ -1,0 +1,152 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GradeWise</title>
+    <style>
+        td{
+            border:2px solid;
+        }
+
+    </style>
+</head>
+<body >
+    <br>
+    <table border="1">
+        <tr style="border: 2px solid;">
+            <td></td>
+            <td colspan="5" style="padding-left: 200px;">IE1(OUT OF 20)</td>
+            <td colspan="5" style="padding-left: 200px;">IE2(OUT OF 30)</td>
+            <td colspan="5" style="padding-left: 200px;">ETE(OUT OF 50)</td>
+            <td colspan="2">
+                OVERALL(PERCENTAGE)
+            </td>
+        </tr>
+
+        <tr>
+                <td style="width: 100px;">
+                    <strong>student name</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>STQA</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>CN</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>RM</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT1</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT2</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>STQA</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>CN</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>RM</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT1</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT2</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>STQA</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>CN</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>RM</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT1</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>ELECT2</strong>
+                </td>
+                <td style="width: 100px;">
+                    <strong>actual ete</strong>
+                </td>
+            <td style="background-color: {% if prediction > 60 %}green{% elif 35 < prediction <= 60 %}yellow{% else %}red{% endif %};">
+
+                predicted score
+            </td>
+        </tr>
+
+        {% for row in student_details %}
+            <tr>
+                {% for column, value in row.items %}
+                    <td>
+                        {{ value }}
+                    </td>
+                {% endfor %}
+                <td style="background-color: {% if prediction > 60 %}green{% elif 35 < prediction <= 60 %}yellow{% else %}red{% endif %};">
+                    {{ prediction }}
+                
+                </td>
+            </tr>
+        {% endfor %}
+        
+
+    </table>
+   
+    
+    {% if prediction > 90 %}
+    <p style="font-size: 20px; color: rgb(75, 105, 71); background-color: rgb(251, 240, 255);">predicted Score: {{ prediction }} - Excellent</p>
+{% elif prediction > 60 %}
+    <p style="font-size: 20px; color: rgb(53, 54, 54); background-color: rgb(251, 240, 255);">predicted Score: {{ prediction }} - Good, but can improve</p>
+{% elif prediction > 35 %}
+    <p style="font-size: 20px; color: rgb(127, 156, 100); background-color: rgb(251, 240, 255);">predicted Score: {{ prediction }} - Identify specific areas for improvement</p>
+{% else %}
+    <p style="font-size: 20px; color: rgb(104, 15, 3); background-color: rgb(251, 240, 255);">predicted Score: {{ prediction }} - Needs lots of hard work and attention</p>
+{% endif %}
+ 
+
+
+{% if image_base64 %}
+<h2 style="background-color: rgb(247, 247, 216);"> IE1, IE2 AND ETE SCORES</h2>
+
+    <div style="padding-left: 200PX;">
+        <img src="data:image/png;base64, {{ image_base64 }}" alt="Line Graph">
+    </div>
+
+{% endif %}
+<h2 style="background-color: rgb(247, 247, 216);">
+    COMPARISION BETWEEN IE1 AND IE2 MARKS
+</h2>
+<div class="container-fluid" style="padding-left: 5px;">
+    <div class="row">
+        <div class="col-6" style="padding-left: 0px;">
+            {% if image2_base64 %}
+            <div style="padding-left: 100PX;">
+                <img src="data:image/png;base64, {{ image2_base64 }}" alt="Line Graph">
+            </div>
+    
+            {% endif %}
+        </div>
+        <div class="col-6">
+            {% if image3_base64 %}
+            <div>
+                <img src="data:image/png;base64, {{ image3_base64 }}" alt="Line Graph">
+            </div>
+            
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+
+   
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'admin_base.html' %}
+
+<body >
+{% block content %}
+<div class="container-fluid" id="footer" style="display: flex;  margin-top: 20px;">
+
+<a href="{% url 'classes:current_classes' %}" style="text-decoration: none;">
+    <div class="container-fluid" id="cctab1" style=" margin-top: 100px; margin-left: 400px;">
+        <h2 class="cctext">CLASSES</h2>
+    </div>
+</a>
+    <a href="{% url 'Gradewise:teachers' %}" style="text-decoration: none;">
+        <div class="container-fluid" id="cctab2" style=" margin-top: 100px; margin-left: 200px;">
+          <h2 class="cctext">TEACHERS</h2>
+        </div>
+
+    </a>
+</div>
+
+{% endblock content %}
+</body>
