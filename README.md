@@ -9,7 +9,8 @@ generate class report
 <br>
 compare predicted and actual score of all students to check accuracy of prediction
 <br>
-![comparison graph](https://github.com/akashver20/student-performance-tracker/assets/137759031/52c3088b-dea2-4992-95b4-5f995df7aad2)
+
+![comparison graph](https://github.com/akashver20/student-performance-tracker/assets/137759031/ad627560-8e47-4668-9e85-7db0075922d9)
 
 <br>
 analyse the performance of each student marks 
